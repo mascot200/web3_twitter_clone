@@ -33,7 +33,7 @@ const style = {
 
 
 const SideBar = ({ initialSelectedIcon = 'Home'}) => {
-    const [selected, setSelected] = useState(initialSelectedIcon)
+    const [selected, setSelected] = useState<String>(initialSelectedIcon)
     return (
         <div className={style.wrapper}>
             <div className={style.twitterIconContainer}>
