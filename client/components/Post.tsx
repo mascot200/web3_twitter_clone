@@ -38,6 +38,7 @@ const Post = ({
     isProfileImageNFT,
     timestamp
 }: PostProps) => {
+    
     return (
         <div className={style.wrapper}>
             <div>
@@ -61,7 +62,7 @@ const Post = ({
                             </span>
                         )}
                      <span className={style.handleAndTimeAgo}>
-                        @{ userName } . { format(new Date(timestamp).getTime()) }
+                     @{userName} • {format(new Date(timestamp).getTime())}
                     </span>
                     </span>
 

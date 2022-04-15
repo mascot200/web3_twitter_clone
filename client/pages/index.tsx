@@ -3,9 +3,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import  Feeds  from "../components/home/Feeds"
 import SideBar from '../components/SideBar'
+import Widgets from '../components/Widgets'
 
 const style = {
-  wrapper: `flex justify-center  select-none bg-[#15202b] text-white`,
+  wrapper: `flex justify-center   select-none bg-[#15202b] text-white`,
   content: `max-w-[1400px] w-2/3 flex justify-between`
 }
 
@@ -15,7 +16,7 @@ const Home: NextPage = () => {
        <div className={style.content}>
             <SideBar />
             <Feeds />
-            <h6>Widgets</h6>
+            <Widgets />
        </div>
      </div>
   )

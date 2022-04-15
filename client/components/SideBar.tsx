@@ -7,6 +7,7 @@ import { FiBell, FiMoreHorizontal } from 'react-icons/fi'
 import { HiOutlineMail, HiMail } from 'react-icons/hi'
 import { FaRegListAlt, FaHashtag, FaBell } from 'react-icons/fa'
 import { CgMoreO } from 'react-icons/cg'
+import Link from 'next/link';
 import {
     BsBookmark,
     BsBookmarkFill,
@@ -34,6 +35,7 @@ const style = {
 
 const SideBar = ({ initialSelectedIcon = 'Home'}) => {
     const [selected, setSelected] = useState<String>(initialSelectedIcon)
+ 
     return (
         <div className={style.wrapper}>
             <div className={style.twitterIconContainer}>
@@ -94,7 +96,7 @@ const SideBar = ({ initialSelectedIcon = 'Home'}) => {
                 text='Profile'
                 isActive={Boolean(selected === 'Profile')}
                 setSelected={setSelected}
-                redirect={'/'}
+                redirect={'/profile'}
                 />
 
                <SideBarOptions

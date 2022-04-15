@@ -20,9 +20,11 @@ interface SidebarOptionProps {
 
 
 const SideBarOptions = ({ text, Icon, isActive, setSelected, redirect}: SidebarOptionProps) => {
+  const router = useRouter();
     const handleClick = (buttonText = text) => {
         if (buttonText !== 'More' && setSelected) {
           setSelected(buttonText)
+          router.push(redirect)
         } else return
       }
         return (
