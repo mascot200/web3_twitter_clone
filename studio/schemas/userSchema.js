@@ -1,43 +1,44 @@
 export const userSchema = {
     name: 'users',
-    title: 'Users',
     type: 'document',
-
+    title: 'Users',
     fields: [
-        {
-            name: 'name',
-            title: 'Name',
-            type: 'string',
-        },
-        {
-            name: 'walletAddress',
-            title: 'Wallet Address',
-            type: 'string',
-        },
-        {
-            name: 'profileImage',
-            titlt: 'Profile Image',
-            type: 'string'
-        },
-        {
-            name: 'isProfileImageNft',
-            title: "Is Profile Image NFT",
-            type: 'boolean'
-        },
-        {
-            name: 'coverImage',
-            title: 'Cover Image',
-            type: 'string'
-        },
-
-        {
-            name: 'tweets',
-            title: 'Tweets',
-            type: 'array',
-            of: [{
-                type: 'reference',
-                to: [{ type: 'tweets'}]
-            }]
-        }
-    ]
-}
+      {
+        name: 'name',
+        type: 'string',
+        title: 'Name',
+      },
+      {
+        name: 'walletAddress',
+        type: 'string',
+        title: 'Wallet Address',
+      },
+      {
+        name: 'profileImage',
+        type: 'string',
+        title: 'Profile Image',
+      },
+      {
+        name: 'isProfileImageNft',
+        title: 'Is Profile Image NFT',
+        type: 'boolean',
+      },
+      {
+        name: 'coverImage',
+        type: 'string',
+        title: 'Cover Image',
+      },
+      {
+        name: 'tweets',
+        title: 'Tweets',
+        type: 'array',
+        of: [
+          {
+            type: 'reference',
+            to: [{ type: 'tweets' }],
+          },
+        ],
+      },
+    ],
+  }
+  

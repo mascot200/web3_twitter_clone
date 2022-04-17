@@ -1,10 +1,10 @@
 import { useState, useContext } from 'react'
-// import { TwitterContext } from '../../context/TwitterContext'
+import { TwitterContext } from '../../context/TwitterContext'
 import { BsCardImage, BsEmojiSmile } from 'react-icons/bs'
 import { RiFileGifLine, RiBarChartHorizontalFill } from 'react-icons/ri'
 import { IoMdCalendar } from 'react-icons/io'
 import { MdOutlineLocationOn } from 'react-icons/md'
-// import { client } from '../../lib/client'
+import { client } from '../../util/client'
 
 const style = {
   wrapper: `px-4 flex flex-row border-b border-[#38444d] pb-4`,
@@ -22,9 +22,47 @@ const style = {
 
 const TweetBox = () => {
     const [tweetMessage, setTweetMessage] = useState('');
-    const postTweet = (e) => {
-        e.preventDefault();
-        alert(tweetMessage)
+    const {currentAccount, setAppStatus} = useContext(TwitterContext);
+   
+    const postTweet = async(event: any) => {
+       
+          try {
+            event.preventDefault()
+
+            if (!tweetMessage) return
+            const tweetId = `${currentAccount}_${Date.now()}`
+        
+            const tweetDoc = {
+              _type: 'tweets',
+              _id: tweetId,
+              tweet: tweetMessage,
+              timestamp: new Date(Date.now()).toISOString(),
+              author: {
+                _key: tweetId,
+                _ref: currentAccount,
+                _type: 'reference',
+              },
+            }
+        
+            await client.createIfNotExists(tweetDoc)
+        
+            await client
+              .patch(currentAccount)
+              .setIfMissing({ tweets: [] })
+              .insert('after', 'tweets[-1]', [
+                {
+                  _key: tweetId,
+                  _ref: tweetId,
+                  _type: 'reference',
+                },
+              ])
+              .commit()
+       
+            setTweetMessage("")
+          
+          } catch (error) {
+              console.log(error)
+          }
     }
 
  
@@ -53,7 +91,7 @@ const TweetBox = () => {
                     <button
                     type='submit'
                     disabled={!tweetMessage}
-                    onClick={(e) => postTweet(e)}
+                    onClick={(event) => postTweet(event)}
                     className={`${style.submitGeneral} ${
                         tweetMessage ? style.activeSubmit : style.inactiveSubmit
                     }`}

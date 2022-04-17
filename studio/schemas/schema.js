@@ -6,7 +6,5 @@ import { tweetSchema } from './tweetSchema'
 
 export default createSchema({
   name: 'default',
-  types: schemaTypes.concat([
-    userSchema, tweetSchema
-  ]),
+  types: schemaTypes.concat([userSchema, tweetSchema]),
 })
