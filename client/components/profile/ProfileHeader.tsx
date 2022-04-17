@@ -1,6 +1,6 @@
 import React from 'react'
 import { useContext, useEffect, useState } from 'react'
-// import { TwitterContext } from '../../context/TwitterContext'
+import { TwitterContext } from '../../context/TwitterContext'
 import { BsArrowLeftShort } from 'react-icons/bs'
 import { useRouter } from 'next/router'
 // import Modal from 'react-modal'
