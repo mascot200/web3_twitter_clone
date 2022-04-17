@@ -25,7 +25,7 @@ const TweetBox = () => {
     const {currentAccount, setAppStatus} = useContext(TwitterContext);
    
     const postTweet = async(event: any) => {
-       
+        setAppStatus("loading")
           try {
             event.preventDefault()
 
@@ -59,7 +59,7 @@ const TweetBox = () => {
               .commit()
        
             setTweetMessage("")
-          
+            setAppStatus("connected")
           } catch (error) {
               console.log(error)
           }
